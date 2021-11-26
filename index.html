@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./styles/style.css">
+    <title>Calendar</title>
+</head>
+<body>
+<div class="container">
+    <header class="header"></header>
+    <main class="main">
+        <div class="cal__div">
+            <div class="razmetka__main">
+                <div class="razmetka__1">
+                    <label class="cur__time"></label>
+                    <label class="cur__date"></label>
+                </div>
+                <div class="razmetka__2">
+                    <button class="pre__month arrows"> &#8743</button>
+                    <div class="date__input__div">
+                        <label class="label__input__div"><span class="label__input__text">Form: </br>
+                            MM/YYYY</span></label>
+                        <input type="text" class="input__input__div">
+                        <div class="razmetka__3">
+                            <button class="btn__input__div btn__accept">Accept</button>
+                            <button class="btn__input__div btn__back">Back</button>
+                        </div>
+                    </div>
+                    <label class="cur__month cur__month_and_year"></label>
+                    <label class="cur__year cur__month_and_year"></label>
+                    <button class="next__month arrows"> &#8744</button>
+                </div>
+                <div class="razmetka__4">
+                    <div class="weather__div">
+                        <div class="razmetka__4_1">
+                            <p class="weather__city__name"></p>
+                            <input type="text" class="weather__city__input" placeholder="City">
+                            <p class='temp temp__today'></p>
+                            <img alt="weather__img" class="weather__img">
+                        </div>
+                        <div class="razmetka__4_2">
+                            <p class='temp t1'></p>
+                            <p class='temp t2'></p>
+                            <p class='temp t3'></p>
+                            <p class='temp t4'></p>
+                        </div>
+                    </div>
+                    <button class="btn__settings">Settings</button>
+                </div>
+                <div class="settings__div">
+                    <div class="sett__razmetka1">
+                        <p class="first__day">First day of week :</p>
+                        <div class="sett__razmetka1_1">
+                            <input type="radio" id="radioButtonMO" class="radio__day__of__week" checked>
+                            <label for="radioButtonMO" class="label__monday">Monday</label>
+                        </div>
+                        <div class="sett__razmetka1_2">
+                            <input type="radio" id="radioButtonSU" class="radio__day__of__week">
+                            <label for="radioButtonSU" class="label__sunday">Sunday</label>
+                        </div>
+                    </div>
+                    <div class="sett__razmetka2">
+                        <button class="btn__select__weekends">Select Weekends</button>
+                        <p class="to__do__list__radname">To DO List :</p>
+                        <div class="sett__razmetka2_1">
+                            <input type="radio" id="ON" class="to__do__radio" checked>
+                            <label for="ON" class="label__to__do__on">ON</label>
+                        </div>
+                        <div class="sett__razmetka2_2">
+                            <input type="radio" id="OFF" class="to__do__radio">
+                            <label for="OFF" class="label__to__do__off">OFF</label>
+                        </div>
+                    </div>
+                    <div class="sett__razmetka3">
+                        <p class="only__cur__month">Only current month :</p>
+                        <input type="radio" id="radio__cur__month" class="only__cur__month__radio">
+                    </div>
+                    <div class="sett__razmetka4">
+                        <button class="btn__back__from__settings">Back</button>
+                        <button class="btn__cancel">Cancel</button>
+                        <button class="confirm__settings">Confirm</button>
+                    </div>
+                </div>
+            </div>
+            <div class="days__of__week">
+                <div class="monday">MO</div>
+                <div class="tuesday">TU</div>
+                <div class="wednesday">WE</div>
+                <div class="thursday">TH</div>
+                <div class="friday">FR</div>
+                <div class="saturday">SA</div>
+                <div class="sunday">SU</div>
+            </div>
+            <div class="days__of__month">
+            </div>
+        </div>
+    </main>
+    <footer class="footer"></footer>
+</div>
+<script src="js.js"></script>
+</body>
+</html>
