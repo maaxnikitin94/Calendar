@@ -228,7 +228,7 @@ document.querySelector('.btn__settings').onclick = function () {
 };
 //Обработка клика по Select Weekends
 document.querySelector('.btn__select__weekends').onclick = function () {
-    document.querySelector('.cal__div').style.backgroundImage = "url('styles/images/weekend__fon.jpg')";
+    document.querySelector('.cal__div').style.backgroundImage = "url('./src/styles/images/weekend__fon.jpg')";
     document.querySelector('.btn__select__weekends').style.background = 'rgba(132, 146, 131, .8)';
     document.querySelector('.btn__select__weekends').style.color = 'black';
     document.querySelector('.btn__select__weekends').style.boxShadow = 'inset 0 0 5px 0 black';
@@ -358,6 +358,8 @@ document.querySelector('.btn__back__from__settings').onclick = function () {
 document.querySelector('.btn__cancel').onclick = function () {
     document.querySelectorAll('.select__weekend').forEach(function (x) {
         x.style.background = '';
+        x.style.color = '';
+        x.style.boxShadow = '';
         x.classList.remove('select__weekend');
     });
     document.querySelector('#radio__cur__month').checked = false;
@@ -368,7 +370,7 @@ document.querySelector('.btn__cancel').onclick = function () {
     document.querySelector('#radioButtonMO').onclick;
     document.querySelector('#ON').onclick;
     document.querySelector('.btn__select__weekends').classList.remove('inProgress');
-    document.querySelector('.cal__div').style.backgroundImage = "url('.as HTMLElement)/styles/images/cal__fon.jpg')";
+    document.querySelector('.cal__div').style.backgroundImage = "url('./src/styles/images/cal__fon.jpg')";
     document.querySelectorAll('.days').forEach(function (x) { return x.onclick = function () {
     }; });
     document.querySelector('.btn__select__weekends').style.backgroundColor = '';
@@ -381,7 +383,7 @@ document.querySelector('.btn__cancel').onclick = function () {
 };
 //Обработка клика по Confirm
 document.querySelector('.confirm__settings').onclick = function () {
-    document.querySelector('.cal__div').style.backgroundImage = "url('./styles/images/cal__fon.jpg')";
+    document.querySelector('.cal__div').style.backgroundImage = "url('./src/styles/images/cal__fon.jpg')";
     localStorage.setItem('mas_selectWeekends', mas_selectWeekends);
     document.querySelectorAll('.days').forEach(function (x) { return x.onclick = function () {
     }; });
@@ -408,7 +410,7 @@ document.querySelector('.confirm__settings').onclick = function () {
             document.querySelector('.btn__select__weekends').style.boxShadow = '';
             document.querySelectorAll('.days').forEach(function (x) { return x.onclick = function () {
             }; });
-            document.querySelector('.cal__div').style.backgroundImage = "url('./styles/images/cal__fon.jpg')";
+            document.querySelector('.cal__div').style.backgroundImage = "url('./src/styles/images/cal__fon.jpg')";
             document.querySelector('.btn__settings').style.display = 'unset';
             document.querySelector('.settings__div').style.display = 'none';
         }
@@ -508,7 +510,7 @@ var tapToDoList = function () {
                 for (var child in document.querySelector(".ul__" + dayX.innerText + "__" + month_mas[month - 1] + "__" + year).children) {
                     myLastInput = child;
                 }
-                if (myLastInput.classList.contains('to__do__li') && document.querySelectorAll(".li__day__" + dayX.innerText + "__" + month_mas[month - 1] + "__" + year).length > 0) {
+                if (myLastInput.classList.contains('.to__do__delete') && document.querySelectorAll(".li__day__" + dayX.innerText + "__" + month_mas[month - 1] + "__" + year).length > 0) {
                     myLastInput.remove();
                 }
                 if (document.querySelectorAll(".li__day__" + dayX.innerText + "__" + month_mas[month - 1] + "__" + year).length === 0) {

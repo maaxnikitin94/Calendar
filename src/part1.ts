@@ -250,7 +250,7 @@ let clearCal = () => {
 
 //Обработка клика по Select Weekends
 (document.querySelector('.btn__select__weekends') as HTMLButtonElement).onclick = () => {
-    (document.querySelector('.cal__div') as HTMLElement).style.backgroundImage = "url('styles/images/weekend__fon.jpg')";
+    (document.querySelector('.cal__div') as HTMLElement).style.backgroundImage = "url('./src/styles/images/weekend__fon.jpg')";
     (document.querySelector('.btn__select__weekends') as HTMLElement).style.background = 'rgba(132, 146, 131, .8)';
     (document.querySelector('.btn__select__weekends') as HTMLElement).style.color = 'black';
     (document.querySelector('.btn__select__weekends') as HTMLElement).style.boxShadow = 'inset 0 0 5px 0 black'
@@ -390,6 +390,8 @@ let clearCal = () => {
 (document.querySelector('.btn__cancel') as HTMLElement).onclick = () => {
     document.querySelectorAll('.select__weekend').forEach((x: HTMLElement) => {
         x.style.background = ''
+        x.style.color = ''
+        x.style.boxShadow = ''
         x.classList.remove('select__weekend')
     });
     (document.querySelector('#radio__cur__month') as HTMLInputElement).checked = false;
@@ -400,7 +402,7 @@ let clearCal = () => {
     (document.querySelector('#radioButtonMO') as HTMLElement).onclick;
     (document.querySelector('#ON') as HTMLElement).onclick
     document.querySelector('.btn__select__weekends').classList.remove('inProgress');
-    (document.querySelector('.cal__div') as HTMLElement).style.backgroundImage = "url('.as HTMLElement)/styles/images/cal__fon.jpg')"
+    (document.querySelector('.cal__div') as HTMLElement).style.backgroundImage = "url('./src/styles/images/cal__fon.jpg')"
     document.querySelectorAll('.days').forEach((x: HTMLElement) => x.onclick = () => {
 
     });
@@ -415,7 +417,7 @@ let clearCal = () => {
 
 //Обработка клика по Confirm
 (document.querySelector('.confirm__settings') as HTMLElement).onclick = () => {
-    (document.querySelector('.cal__div') as HTMLElement).style.backgroundImage = "url('./styles/images/cal__fon.jpg')"
+    (document.querySelector('.cal__div') as HTMLElement).style.backgroundImage = "url('./src/styles/images/cal__fon.jpg')"
     localStorage.setItem('mas_selectWeekends', mas_selectWeekends)
     document.querySelectorAll('.days').forEach((x: HTMLElement) => x.onclick = () => {
 
@@ -442,7 +444,7 @@ let clearCal = () => {
             document.querySelectorAll('.days').forEach((x: HTMLElement) => x.onclick = () => {
 
             });
-            (document.querySelector('.cal__div') as HTMLElement).style.backgroundImage = "url('./styles/images/cal__fon.jpg')";
+            (document.querySelector('.cal__div') as HTMLElement).style.backgroundImage = "url('./src/styles/images/cal__fon.jpg')";
             (document.querySelector('.btn__settings') as HTMLElement).style.display = 'unset';
             (document.querySelector('.settings__div') as HTMLElement).style.display = 'none';
         }
@@ -551,7 +553,7 @@ let tapToDoList = () => {
                 for (let child in document.querySelector(`.ul__${dayX.innerText}__${month_mas[month - 1]}__${year}`).children) {
                     myLastInput = child;
                 }
-                if (myLastInput.classList.contains('to__do__li') && document.querySelectorAll(`.li__day__${dayX.innerText}__${month_mas[month - 1]}__${year}`).length > 0) {
+                if (myLastInput.classList.contains('.to__do__delete')&& document.querySelectorAll(`.li__day__${dayX.innerText}__${month_mas[month - 1]}__${year}`).length > 0) {
                     myLastInput.remove()
                 }
                 if (document.querySelectorAll(`.li__day__${dayX.innerText}__${month_mas[month - 1]}__${year}`).length === 0) {
