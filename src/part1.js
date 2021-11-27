@@ -1,9 +1,8 @@
-"use strict";
 //Создаём переменные текущей даты и массив названий месяцев
 var myDate = new Date();
 var day = String(myDate.getDate());
 var month = myDate.getMonth() + 1;
-var year = String(myDate.getFullYear());
+var year = myDate.getFullYear();
 var month_mas = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 var mas_selectWeekends = [];
 //Необходимые переменные по DOM
@@ -13,6 +12,7 @@ var cur_year = document.querySelector('.cur__year');
 var cur_time = document.querySelector('.cur__time');
 var pre_month_btn = document.querySelector('.pre__month');
 var next_month_btn = document.querySelector('.next__month');
+var radio_su = document.querySelector('#radioButtonSU');
 //Label с текущим месяцем
 cur_month.innerHTML = "" + month_mas[month - 1];
 //Label с текущим годом
@@ -25,15 +25,8 @@ setInterval(function () {
 }, 1000);
 //Функция отображения текущей даты в label
 document.querySelector('.cur__date').insertAdjacentHTML('afterbegin', "<p style=\"margin: 0;\"><span style=\"cursor: pointer;\">" + day + "th " + month_mas[month - 1] + " " + year + "</span></p>");
-//При клике на текущую дату, открывает её
-document.querySelector('.cur__date').addEventListener('click', function () {
-    cur_month.innerHTML = "" + month_mas[myDate.getMonth()];
-    cur_year.innerHTML = "" + String(myDate.getFullYear());
-    month = myDate.getMonth() + 1;
-    year = String(myDate.getFullYear());
-    clearCal();
-    createCal(year, month);
-    //localStorage.getItem(mas_selectWeekends)
+//Условие Если выбраны выходные дни
+var ifSelectWeekend = function () {
     if (mas_selectWeekends.length !== 0) {
         mas_selectWeekends.forEach(function (y) {
             document.querySelectorAll(".main__day__" + y).forEach(function (x) {
@@ -44,6 +37,17 @@ document.querySelector('.cur__date').addEventListener('click', function () {
             });
         });
     }
+};
+//При клике на текущую дату, открывает её
+document.querySelector('.cur__date').addEventListener('click', function () {
+    cur_month.innerHTML = "" + month_mas[myDate.getMonth()];
+    cur_year.innerHTML = "" + String(myDate.getFullYear());
+    month = myDate.getMonth() + 1;
+    year = myDate.getFullYear();
+    clearCal();
+    createCal(year, month);
+    //localStorage.getItem(mas_selectWeekends)
+    ifSelectWeekend();
     tapToDoList();
     markToDoDays();
     if (document.querySelector('.btn__select__weekends').classList.contains('inProgress')) {
@@ -70,10 +74,10 @@ var createCal = function (yy, mm) {
         if ((i + 1) % 6 === 0) {
             document.querySelector(".cld1__" + x).classList.add('weekend');
         }
-        if (document.querySelector('#radioButtonSU').checked && (i + 1) % 6 === 0) {
+        if (radio_su.checked && (i + 1) % 6 === 0) {
             document.querySelector(".cld1__" + x).classList.remove('weekend');
         }
-        if (document.querySelector('#radioButtonSU').checked && new Date(yy, mm - 2, x - i).getDay() + 1 === 1) {
+        if (radio_su.checked && new Date(yy, mm - 2, x - i).getDay() + 1 === 1) {
             document.querySelector(".cld1__" + (x - i)).classList.add('weekend');
         }
     }
@@ -84,10 +88,10 @@ var createCal = function (yy, mm) {
         if ((getDay(d) + 1) % 6 === 0 || (getDay(d) + 1) % 7 === 0) {
             document.querySelector(".main__day__" + d.getDate()).classList.add('weekend');
         }
-        if (document.querySelector('#radioButtonSU').checked && (getDay(d) + 1) % 6 === 0) {
+        if (radio_su.checked && (getDay(d) + 1) % 6 === 0) {
             document.querySelector(".main__day__" + d.getDate()).classList.remove('weekend');
         }
-        else if (document.querySelector('#radioButtonSU').checked && (getDay(d) + 1) === 1) {
+        else if (radio_su.checked && (getDay(d) + 1) === 1) {
             document.querySelector(".main__day__" + d.getDate()).classList.add('weekend');
         }
         d.setDate(d.getDate() + 1);
@@ -100,17 +104,17 @@ var createCal = function (yy, mm) {
             if ((i + 1) % 6 === 0 || (i + 1) % 7 === 0) {
                 document.querySelector(".cld2__" + ((i + 1) - getDay(d))).classList.add('weekend');
             }
-            if (document.querySelector('#radioButtonSU').checked && (i + 1) % 6 === 0) {
+            if (radio_su.checked && (i + 1) % 6 === 0) {
                 document.querySelector(".cld2__" + ((i + 1) - getDay(d))).classList.remove('weekend');
             }
-            else if (document.querySelector('#radioButtonSU').checked && (i + 1) === 1) {
+            else if (radio_su.checked && (i + 1) === 1) {
                 document.querySelector(".cld2__" + ((i + 1) - getDay(d))).classList.add('weekend');
             }
         }
     }
     //Отметка текущего дня месяца рамкой
     document.querySelectorAll('.days').forEach(function (x) {
-        if (x.innerText === day && !x.classList.contains('clear__day') && !x.classList.contains('clear__day2') && month === myDate.getMonth() + 1 && year === String(myDate.getFullYear()))
+        if (x.innerText === day && !x.classList.contains('clear__day') && !x.classList.contains('clear__day2') && month === myDate.getMonth() + 1 && year === myDate.getFullYear())
             x.classList.add('active');
     });
 };
@@ -137,21 +141,11 @@ pre_month_btn.onclick = function (event) {
     clearCal();
     createCal(year, month);
     localStorage.getItem(mas_selectWeekends);
-    if (mas_selectWeekends.length !== 0) {
-        mas_selectWeekends.forEach(function (y) {
-            document.querySelectorAll(".main__day__" + y).forEach(function (x) {
-                x.classList.add('select__weekend');
-                x.style.background = 'rgba(132, 146, 131, .9)';
-                x.style.boxShadow = '0 0 6px 6px rgba(132, 146, 131, .9)';
-                x.style.color = 'white';
-            });
-        });
-    }
-    document.querySelector('#radio__cur__month').onclick();
+    ifSelectWeekend()(document.querySelector('#radio__cur__month')).onclick(event);
     tapToDoList();
     markToDoDays();
     if (document.querySelector('.btn__select__weekends').classList.contains('inProgress')) {
-        document.querySelector('.btn__select__weekends').onclick();
+        document.querySelector('.btn__select__weekends').onclick(event);
     }
 };
 //Переключение месяцев вперёд (стрелка вниз)
@@ -172,21 +166,11 @@ next_month_btn.onclick = function (event) {
     clearCal();
     createCal(year, month);
     localStorage.getItem(mas_selectWeekends);
-    if (mas_selectWeekends.length !== 0) {
-        mas_selectWeekends.forEach(function (y) {
-            document.querySelectorAll(".main__day__" + y).forEach(function (x) {
-                x.classList.add('select__weekend');
-                x.style.background = 'rgba(132, 146, 131, .9)';
-                x.style.boxShadow = '0 0 6px 6px rgba(132, 146, 131, .9)';
-                x.style.color = 'white';
-            });
-        });
-    }
-    document.querySelector('#radio__cur__month').onclick();
+    ifSelectWeekend()(document.querySelector('#radio__cur__month')).onclick(event);
     tapToDoList();
     markToDoDays();
     if (document.querySelector('.btn__select__weekends').classList.contains('inProgress')) {
-        document.querySelector('.btn__select__weekends').onclick();
+        document.querySelector('.btn__select__weekends').onclick(event);
     }
 };
 //Блок date__input__div
@@ -196,17 +180,15 @@ document.querySelectorAll('.cur__month_and_year').forEach(function (x) {
         document.querySelector('.cur__year').style.display = 'none';
         document.querySelector('.date__input__div').style.display = 'flex';
     };
-});
-//Обработка клика по Accept
-document.querySelector('.btn__accept').onclick = function (event) {
+})(document.querySelector('.btn__accept')).onclick = function (event) {
     if (event.target) {
         var selectValue = document.querySelector('.input__input__div').value;
         if (!selectValue.match(/\d{1,2}\/\d{4}/g)) {
             alert('Введены некорректные данные');
             return document.querySelector('.input__input__div').value = '';
         }
-        var selectMonth = selectValue.substring(0, selectValue.indexOf('/'));
-        var selectYear = selectValue.substring(selectValue.indexOf('/') + 1);
+        var selectMonth = Number(selectValue.substring(0, selectValue.indexOf('/')));
+        var selectYear = Number(selectValue.substring(selectValue.indexOf('/') + 1));
         if (selectMonth > 0 && selectMonth <= 12 && selectYear >= 1970 && selectYear < 287586) {
             month = +selectMonth;
             year = +selectYear;
