@@ -2,18 +2,18 @@
 let myDate = new Date();
 let day = String(myDate.getDate());
 let month = myDate.getMonth() + 1;
-let year= myDate.getFullYear();
+let year = myDate.getFullYear();
 let month_mas = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-let mas_selectWeekends:any = [];
+let mas_selectWeekends: any = [];
 
 //Необходимые переменные по DOM
-let days_of_month = document.querySelector('.days__of__month');
+let days_of_month = document.querySelector('.days__of__month') as HTMLElement
 let cur_month = document.querySelector('.cur__month') as HTMLLabelElement;
-let cur_year = document.querySelector('.cur__year')as HTMLLabelElement;
+let cur_year = document.querySelector('.cur__year') as HTMLLabelElement;
 let cur_time = document.querySelector('.cur__time') as HTMLLabelElement;
 let pre_month_btn = document.querySelector('.pre__month');
 let next_month_btn = document.querySelector('.next__month');
-let radio_su = document.querySelector('#radioButtonSU')as HTMLInputElement
+let radio_su = document.querySelector('#radioButtonSU') as HTMLInputElement
 
 //Label с текущим месяцем
 cur_month.innerHTML = `${month_mas[month - 1]}`
@@ -33,10 +33,10 @@ setInterval(function () {
 document.querySelector('.cur__date').insertAdjacentHTML('afterbegin', `<p style="margin: 0;"><span style="cursor: pointer;">${day}th ${month_mas[month - 1]} ${year}</span></p>`)
 
 //Условие Если выбраны выходные дни
-let ifSelectWeekend:any= ():void=>{
+let ifSelectWeekend: any = (): void => {
     if (mas_selectWeekends.length !== 0) {
         mas_selectWeekends.forEach(y => {
-            document.querySelectorAll(`.main__day__${y}`).forEach((x:HTMLElement) => {
+            document.querySelectorAll(`.main__day__${y}`).forEach((x: HTMLElement) => {
                 x.classList.add('select__weekend')
                 x.style.background = 'rgba(132, 146, 131, .9)'
                 x.style.boxShadow = '0 0 6px 6px rgba(132, 146, 131, .9)'
@@ -48,7 +48,7 @@ let ifSelectWeekend:any= ():void=>{
 
 
 //При клике на текущую дату, открывает её
-document.querySelector('.cur__date').addEventListener('click',()=>{
+document.querySelector('.cur__date').addEventListener('click', () => {
     cur_month.innerHTML = `${month_mas[myDate.getMonth()]}`;
     cur_year.innerHTML = `${String(myDate.getFullYear())}`;
     month = myDate.getMonth() + 1;
@@ -60,9 +60,11 @@ document.querySelector('.cur__date').addEventListener('click',()=>{
     tapToDoList()
     markToDoDays()
     if (document.querySelector('.btn__select__weekends')!.classList.contains('inProgress')) {
-        document.querySelector('.btn__select__weekends')!.addEventListener('click',()=>{})
+        document.querySelector('.btn__select__weekends')!.addEventListener('click', () => {
+        })
     }
-    document.querySelector('#radio__cur__month')!.addEventListener('click',()=>{})
+    document.querySelector('#radio__cur__month')!.addEventListener('click', () => {
+    })
 })
 
 //Получаем номер дня недели, делаем воскресенье 7-ым вместо 0-вого.
@@ -127,7 +129,7 @@ let createCal = (yy, mm) => {
     }
 
     //Отметка текущего дня месяца рамкой
-    document.querySelectorAll('.days').forEach((x:HTMLElement) => {
+    document.querySelectorAll('.days').forEach((x: HTMLElement) => {
         if (x.innerText === day && !x.classList.contains('clear__day') && !x.classList.contains('clear__day2') && month === myDate.getMonth() + 1 && year === myDate.getFullYear())
             x.classList.add('active')
     })
@@ -192,13 +194,11 @@ let clearCal = () => {
 }
 
 //Блок date__input__div
-document.querySelectorAll('.cur__month_and_year').forEach((x:HTMLElement)=> {
-    x.onclick = () => {
-        document.querySelector('.cur__month').style.display = 'none'
-        document.querySelector('.cur__year').style.display = 'none'
-        document.querySelector('.date__input__div').style.display = 'flex'
-    }
-})
+(document.querySelector('.cur__month_and_year') as HTMLElement).onclick = () => {
+    (document.querySelector('.cur__month_and_year') as HTMLElement).style.display = 'none';
+    (document.querySelector('.date__input__div') as HTMLElement).style.display = 'flex'
+}
+
 
 //Обработка клика по Accept
 (document.querySelector('.btn__accept') as HTMLElement).onclick = (event) => {
@@ -218,57 +218,46 @@ document.querySelectorAll('.cur__month_and_year').forEach((x:HTMLElement)=> {
             return (document.querySelector('.input__input__div') as HTMLInputElement).value = ''
         }
     }
-    document.querySelector('.date__input__div').style.display = 'none'
-    document.querySelector('.cur__month').style.display = 'unset'
-    document.querySelector('.cur__year').style.display = 'unset'
+    (document.querySelector('.date__input__div') as HTMLElement).style.display = 'none';
+    (document.querySelector('.cur__month_and_year') as HTMLElement).style.display = 'unset'
     clearCal()
     createCal(year, month)
     localStorage.getItem(mas_selectWeekends)
-    if (mas_selectWeekends.length !== 0) {
-        mas_selectWeekends.forEach(y => {
-            document.querySelectorAll(`.main__day__${y}`).forEach(x => {
-                x.classList.add('select__weekend')
-                x.style.background = 'rgba(132, 146, 131, .9)'
-                x.style.boxShadow = '0 0 6px 6px rgba(132, 146, 131, .9)'
-                x.style.color = 'white'
-            })
-        })
-    }
+    ifSelectWeekend()
     if (document.querySelector('.btn__select__weekends').classList.contains('inProgress')) {
-        document.querySelector('.btn__select__weekends').onclick()
+        (document.querySelector('.btn__select__weekends') as HTMLButtonElement).onclick(event)
     }
     cur_month.innerText = `${month_mas[month - 1]}`
-    cur_year.innerText = `${year}`
-    document.querySelector('.input__input__div').value = ''
-    document.querySelector('#radio__cur__month').onclick()
+    cur_year.innerText = `${year}`;
+    (document.querySelector('.input__input__div') as HTMLInputElement).value = '';
+    (document.querySelector('#radio__cur__month') as HTMLInputElement).onclick(event)
     tapToDoList()
     markToDoDays()
 }
 
 //Обработка клика по Back
-document.querySelector('.btn__back').onclick = () => {
-    document.querySelector('.date__input__div').style.display = 'none'
-    document.querySelector('.cur__month').style.display = 'unset'
-    document.querySelector('.cur__year').style.display = 'unset'
-    document.querySelector('.input__input__div').value = ''
+(document.querySelector('.btn__back') as HTMLButtonElement).onclick = () => {
+    (document.querySelector('.date__input__div') as HTMLElement).style.display = 'none';
+    (document.querySelector('.cur__month_and_year') as HTMLElement).style.display = 'unset';
+    (document.querySelector('.input__input__div') as HTMLInputElement).value = ''
 }
 
 //Обработка клика по Settings
-document.querySelector('.btn__settings').onclick = () => {
-    document.querySelector('.btn__settings').style.display = 'none';
-    document.querySelector('.settings__div').style.display = 'flex';
+(document.querySelector('.btn__settings') as HTMLButtonElement).onclick = () => {
+    (document.querySelector('.btn__settings') as HTMLElement).style.display = 'none';
+    (document.querySelector('.settings__div') as HTMLElement).style.display = 'flex';
 }
 
 //Обработка клика по Select Weekends
-document.querySelector('.btn__select__weekends').onclick = () => {
-    document.querySelector('.cal__div').style.backgroundImage = "url('styles/images/weekend__fon.jpg')"
-    document.querySelector('.btn__select__weekends').style.background = 'rgba(132, 146, 131, .8)'
-    document.querySelector('.btn__select__weekends').style.color = 'black'
-    document.querySelector('.btn__select__weekends').style.boxShadow = 'inset 0 0 5px 0 black'
+(document.querySelector('.btn__select__weekends') as HTMLButtonElement).onclick = () => {
+    (document.querySelector('.cal__div') as HTMLElement).style.backgroundImage = "url('styles/images/weekend__fon.jpg')";
+    (document.querySelector('.btn__select__weekends') as HTMLElement).style.background = 'rgba(132, 146, 131, .8)';
+    (document.querySelector('.btn__select__weekends') as HTMLElement).style.color = 'black';
+    (document.querySelector('.btn__select__weekends') as HTMLElement).style.boxShadow = 'inset 0 0 5px 0 black'
     document.querySelector('.btn__select__weekends').classList.add('inProgress')
     localStorage.getItem(mas_selectWeekends)
     if (localStorage.getItem(mas_selectWeekends) === null) {
-        document.querySelectorAll('.days').forEach(x => x.onclick = () => {
+        document.querySelectorAll('.days').forEach((x: HTMLElement) => x.onclick = () => {
             if (x.style.background === '') {
                 x.classList.add('select__weekend')
                 x.style.background = 'rgba(132, 146, 131, .9)'
@@ -289,12 +278,12 @@ document.querySelector('.btn__select__weekends').onclick = () => {
 
 //Переключение первого дня недели(по-умолчанию Понедельник)
 //Воскресенье - первый день
-document.querySelector('#radioButtonSU').onclick = () => {
-    if (document.querySelector('#radioButtonMO').checked === true) {
-        document.querySelector('#radioButtonMO').checked = false;
-        document.querySelector('#radioButtonSU').checked = true;
+(document.querySelector('#radioButtonSU') as HTMLLabelElement).onclick = () => {
+    if ((document.querySelector('#radioButtonMO') as HTMLInputElement).checked === true) {
+        (document.querySelector('#radioButtonMO') as HTMLInputElement).checked = false;
+        (document.querySelector('#radioButtonSU') as HTMLInputElement).checked = true;
     }
-    if (document.querySelector('#radioButtonSU').checked === true) {
+    if ((document.querySelector('#radioButtonSU') as HTMLInputElement).checked === true) {
         document.querySelector('.monday').remove()
         document.querySelector('.sunday').remove()
         document.querySelector('.days__of__week').insertAdjacentHTML('afterbegin', `<div class="monday">MO</div>`)
@@ -310,31 +299,22 @@ document.querySelector('#radioButtonSU').onclick = () => {
         createCal(year, month)
     }
     localStorage.getItem(mas_selectWeekends)
-    if (mas_selectWeekends.length !== 0) {
-        mas_selectWeekends.forEach(y => {
-            document.querySelectorAll(`.main__day__${y}`).forEach(x => {
-                x.classList.add('select__weekend')
-                x.style.background = 'rgba(132, 146, 131, .9)'
-                x.style.boxShadow = '0 0 6px 6px rgba(132, 146, 131, .9)'
-                x.style.color = 'white'
-            })
-        })
-    }
+    ifSelectWeekend()
     if (document.querySelector('.btn__select__weekends').classList.contains('inProgress')) {
-        document.querySelector('.btn__select__weekends').onclick()
+        (document.querySelector('.btn__select__weekends') as HTMLElement).onclick
     }
-    document.querySelector('#radio__cur__month').onclick()
+    (document.querySelector('#radio__cur__month')as HTMLElement).onclick
     tapToDoList()
     markToDoDays()
 }
 
 //Понедельник - первый день
-document.querySelector('#radioButtonMO').onclick = () => {
-    if (document.querySelector('#radioButtonSU').checked === true) {
-        document.querySelector('#radioButtonSU').checked = false;
-        document.querySelector('#radioButtonMO').checked = true;
+(document.querySelector('#radioButtonMO') as HTMLInputElement).onclick = () => {
+    if ((document.querySelector('#radioButtonSU') as HTMLInputElement).checked === true) {
+        (document.querySelector('#radioButtonSU') as HTMLInputElement).checked = false;
+        (document.querySelector('#radioButtonMO') as HTMLInputElement).checked = true;
     }
-    if (document.querySelector('#radioButtonMO').checked === true) {
+    if ((document.querySelector('#radioButtonMO') as HTMLInputElement).checked === true) {
         document.querySelector('.monday').remove()
         document.querySelector('.sunday').remove()
         document.querySelector('.days__of__week').insertAdjacentHTML('afterbegin', `<div class="monday">MO</div>`)
@@ -350,20 +330,11 @@ document.querySelector('#radioButtonMO').onclick = () => {
         createCal(year, month)
     }
     localStorage.getItem(mas_selectWeekends)
-    if (mas_selectWeekends.length !== 0) {
-        mas_selectWeekends.forEach(y => {
-            document.querySelectorAll(`.main__day__${y}`).forEach(x => {
-                x.classList.add('select__weekend')
-                x.style.background = 'rgba(132, 146, 131, .9)'
-                x.style.boxShadow = '0 0 6px 6px rgba(132, 146, 131, .9)'
-                x.style.color = 'white'
-            })
-        })
-    }
+    ifSelectWeekend()
     if (document.querySelector('.btn__select__weekends').classList.contains('inProgress')) {
-        document.querySelector('.btn__select__weekends').onclick()
+        (document.querySelector('.btn__select__weekends') as HTMLElement).onclick
     }
-    document.querySelector('#radio__cur__month').onclick()
+    (document.querySelector('#radio__cur__month') as HTMLElement).onclick
     tapToDoList()
     markToDoDays()
 }
@@ -371,22 +342,22 @@ document.querySelector('#radioButtonMO').onclick = () => {
 
 //Обработка клика по To Do radio
 //ON
-document.querySelector('#ON').onclick = () => {
-    if (document.querySelector('#OFF').checked === true) {
-        document.querySelector('#OFF').checked = false;
-        document.querySelector('#ON').checked = true
+(document.querySelector('#ON')as HTMLElement).onclick = () => {
+    if ((document.querySelector('#OFF') as HTMLInputElement).checked === true) {
+        (document.querySelector('#OFF') as HTMLInputElement).checked = false;
+        (document.querySelector('#ON') as HTMLInputElement).checked = true
     }
     tapToDoList()
     markToDoDays()
 }
 
 //OFF
-document.querySelector('#OFF').onclick = () => {
-    if (document.querySelector('#ON').checked === true) {
-        document.querySelector('#ON').checked = false;
-        document.querySelector('#OFF').checked = true
+(document.querySelector('#OFF')as HTMLElement).onclick = () => {
+    if ((document.querySelector('#ON')as HTMLInputElement).checked === true) {
+        (document.querySelector('#ON')as HTMLInputElement).checked = false;
+        (document.querySelector('#OFF')as HTMLInputElement).checked = true
     }
-    document.querySelectorAll(`.main__day`).forEach(x => {
+    document.querySelectorAll(`.main__day`).forEach((x:HTMLElement) => {
         x.style.boxShadow = ''
         x.style.color = 'black'
         x.onclick = () => {
@@ -397,47 +368,47 @@ document.querySelector('#OFF').onclick = () => {
 
 
 //Обработка checked Only current month
-document.querySelector('#radio__cur__month').onclick = () => {
-    if (document.querySelector('#radio__cur__month').checked === true) {
-        document.querySelectorAll('.clear__day').forEach(x => x.style.opacity = '0')
-        document.querySelectorAll('.clear__day2').forEach(x => x.style.opacity = '0')
+(document.querySelector('#radio__cur__month') as HTMLElement).onclick = () => {
+    if ((document.querySelector('#radio__cur__month')as HTMLInputElement).checked === true) {
+        document.querySelectorAll('.clear__day').forEach((x:HTMLElement) => x.style.opacity = '0')
+        document.querySelectorAll('.clear__day2').forEach((x:HTMLElement) => x.style.opacity = '0')
     }
-    if (document.querySelector('#radio__cur__month').checked === false) {
-        document.querySelectorAll('.clear__day').forEach(x => x.style.opacity = '')
-        document.querySelectorAll('.clear__day2').forEach(x => x.style.opacity = '')
+    if ((document.querySelector('#radio__cur__month')as HTMLInputElement).checked === false) {
+        document.querySelectorAll('.clear__day').forEach((x:HTMLElement) => x.style.opacity = '')
+        document.querySelectorAll('.clear__day2').forEach((x:HTMLElement) => x.style.opacity = '')
     }
 }
 
 
 //Обработка клика по Back from Settings
-document.querySelector('.btn__back__from__settings').onclick = () => {
-    document.querySelector('.btn__settings').style.display = 'unset';
-    document.querySelector('.settings__div').style.display = 'none';
+(document.querySelector('.btn__back__from__settings')as HTMLElement).onclick = () => {
+    (document.querySelector('.btn__settings')as HTMLElement).style.display = 'unset';
+    (document.querySelector('.settings__div')as HTMLElement).style.display = 'none';
 }
 
 //Обработка Cancel
-document.querySelector('.btn__cancel').onclick = () => {
-    document.querySelectorAll('.select__weekend').forEach(x => {
+(document.querySelector('.btn__cancel')as HTMLElement).onclick = () => {
+    document.querySelectorAll('.select__weekend').forEach((x:HTMLElement) => {
         x.style.background = ''
         x.classList.remove('select__weekend')
-    })
-    document.querySelector('#radio__cur__month').checked = false;
-    document.querySelectorAll('.clear__day').forEach(x => x.style.opacity = '')
-    document.querySelectorAll('.clear__day2').forEach(x => x.style.opacity = '')
+    });
+    (document.querySelector('#radio__cur__month') as HTMLInputElement).checked = false;
+    document.querySelectorAll('.clear__day').forEach((x:HTMLElement) => x.style.opacity = '')
+    document.querySelectorAll('.clear__day2').forEach((x:HTMLElement) => x.style.opacity = '')
     mas_selectWeekends = []
-    localStorage.removeItem('mas_selectWeekends')
-    document.querySelector('#radioButtonMO').onclick()
-    document.querySelector('#ON').onclick()
-    document.querySelector('.btn__select__weekends').classList.remove('inProgress')
-    document.querySelector('.cal__div').style.backgroundImage = "url('./styles/images/cal__fon.jpg')"
-    document.querySelectorAll('.days').forEach(x => x.onclick = () => {
+    localStorage.removeItem('mas_selectWeekends');
+    (document.querySelector('#radioButtonMO')as HTMLElement).onclick;
+    (document.querySelector('#ON')as HTMLElement).onclick
+    document.querySelector('.btn__select__weekends').classList.remove('inProgress');
+    (document.querySelector('.cal__div')as HTMLElement).style.backgroundImage = "url('./styles/images/cal__fon.jpg')"
+    document.querySelectorAll('.days').forEach((x:HTMLElement) => x.onclick = () => {
 
-    })
-    document.querySelector('.btn__select__weekends').style.backgroundColor = ''
-    document.querySelector('.btn__select__weekends').style.color = ''
-    document.querySelector('.btn__select__weekends').style.boxShadow = ''
-    document.querySelector('.btn__settings').style.display = 'unset';
-    document.querySelector('.settings__div').style.display = 'none';
+    });
+    (document.querySelector('.btn__select__weekends')as HTMLElement).style.backgroundColor = '';
+    (document.querySelector('.btn__select__weekends')as HTMLElement).style.color = '';
+    (document.querySelector('.btn__select__weekends')as HTMLElement).style.boxShadow = '';
+    (document.querySelector('.btn__settings')as HTMLElement).style.display = 'unset';
+    (document.querySelector('.settings__div')as HTMLElement).style.display = 'none';
     tapToDoList()
     markToDoDays()
 }

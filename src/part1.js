@@ -51,9 +51,11 @@ document.querySelector('.cur__date').addEventListener('click', function () {
     tapToDoList();
     markToDoDays();
     if (document.querySelector('.btn__select__weekends').classList.contains('inProgress')) {
-        document.querySelector('.btn__select__weekends').addEventListener('click', function () { });
+        document.querySelector('.btn__select__weekends').addEventListener('click', function () {
+        });
     }
-    document.querySelector('#radio__cur__month').addEventListener('click', function () { });
+    document.querySelector('#radio__cur__month').addEventListener('click', function () {
+    });
 });
 //Получаем номер дня недели, делаем воскресенье 7-ым вместо 0-вого.
 var getDay = function (date) {
@@ -174,13 +176,12 @@ next_month_btn.onclick = function (event) {
     }
 };
 //Блок date__input__div
-document.querySelectorAll('.cur__month_and_year').forEach(function (x) {
-    x.onclick = function () {
-        document.querySelector('.cur__month').style.display = 'none';
-        document.querySelector('.cur__year').style.display = 'none';
-        document.querySelector('.date__input__div').style.display = 'flex';
-    };
-})(document.querySelector('.btn__accept')).onclick = function (event) {
+document.querySelector('.cur__month_and_year').onclick = function () {
+    document.querySelector('.cur__month_and_year').style.display = 'none';
+    document.querySelector('.date__input__div').style.display = 'flex';
+};
+//Обработка клика по Accept
+document.querySelector('.btn__accept').onclick = function (event) {
     if (event.target) {
         var selectValue = document.querySelector('.input__input__div').value;
         if (!selectValue.match(/\d{1,2}\/\d{4}/g)) {
@@ -199,36 +200,25 @@ document.querySelectorAll('.cur__month_and_year').forEach(function (x) {
         }
     }
     document.querySelector('.date__input__div').style.display = 'none';
-    document.querySelector('.cur__month').style.display = 'unset';
-    document.querySelector('.cur__year').style.display = 'unset';
+    document.querySelector('.cur__month_and_year').style.display = 'unset';
     clearCal();
     createCal(year, month);
     localStorage.getItem(mas_selectWeekends);
-    if (mas_selectWeekends.length !== 0) {
-        mas_selectWeekends.forEach(function (y) {
-            document.querySelectorAll(".main__day__" + y).forEach(function (x) {
-                x.classList.add('select__weekend');
-                x.style.background = 'rgba(132, 146, 131, .9)';
-                x.style.boxShadow = '0 0 6px 6px rgba(132, 146, 131, .9)';
-                x.style.color = 'white';
-            });
-        });
-    }
+    ifSelectWeekend();
     if (document.querySelector('.btn__select__weekends').classList.contains('inProgress')) {
-        document.querySelector('.btn__select__weekends').onclick();
+        document.querySelector('.btn__select__weekends').onclick(event);
     }
     cur_month.innerText = "" + month_mas[month - 1];
     cur_year.innerText = "" + year;
     document.querySelector('.input__input__div').value = '';
-    document.querySelector('#radio__cur__month').onclick();
+    document.querySelector('#radio__cur__month').onclick(event);
     tapToDoList();
     markToDoDays();
 };
 //Обработка клика по Back
 document.querySelector('.btn__back').onclick = function () {
     document.querySelector('.date__input__div').style.display = 'none';
-    document.querySelector('.cur__month').style.display = 'unset';
-    document.querySelector('.cur__year').style.display = 'unset';
+    document.querySelector('.cur__month_and_year').style.display = 'unset';
     document.querySelector('.input__input__div').value = '';
 };
 //Обработка клика по Settings
@@ -287,20 +277,11 @@ document.querySelector('#radioButtonSU').onclick = function () {
         createCal(year, month);
     }
     localStorage.getItem(mas_selectWeekends);
-    if (mas_selectWeekends.length !== 0) {
-        mas_selectWeekends.forEach(function (y) {
-            document.querySelectorAll(".main__day__" + y).forEach(function (x) {
-                x.classList.add('select__weekend');
-                x.style.background = 'rgba(132, 146, 131, .9)';
-                x.style.boxShadow = '0 0 6px 6px rgba(132, 146, 131, .9)';
-                x.style.color = 'white';
-            });
-        });
-    }
+    ifSelectWeekend();
     if (document.querySelector('.btn__select__weekends').classList.contains('inProgress')) {
-        document.querySelector('.btn__select__weekends').onclick();
+        document.querySelector('.btn__select__weekends').onclick;
     }
-    document.querySelector('#radio__cur__month').onclick();
+    document.querySelector('#radio__cur__month').onclick;
     tapToDoList();
     markToDoDays();
 };
@@ -326,20 +307,11 @@ document.querySelector('#radioButtonMO').onclick = function () {
         createCal(year, month);
     }
     localStorage.getItem(mas_selectWeekends);
-    if (mas_selectWeekends.length !== 0) {
-        mas_selectWeekends.forEach(function (y) {
-            document.querySelectorAll(".main__day__" + y).forEach(function (x) {
-                x.classList.add('select__weekend');
-                x.style.background = 'rgba(132, 146, 131, .9)';
-                x.style.boxShadow = '0 0 6px 6px rgba(132, 146, 131, .9)';
-                x.style.color = 'white';
-            });
-        });
-    }
+    ifSelectWeekend();
     if (document.querySelector('.btn__select__weekends').classList.contains('inProgress')) {
-        document.querySelector('.btn__select__weekends').onclick();
+        document.querySelector('.btn__select__weekends').onclick;
     }
-    document.querySelector('#radio__cur__month').onclick();
+    document.querySelector('#radio__cur__month').onclick;
     tapToDoList();
     markToDoDays();
 };
@@ -393,8 +365,8 @@ document.querySelector('.btn__cancel').onclick = function () {
     document.querySelectorAll('.clear__day2').forEach(function (x) { return x.style.opacity = ''; });
     mas_selectWeekends = [];
     localStorage.removeItem('mas_selectWeekends');
-    document.querySelector('#radioButtonMO').onclick();
-    document.querySelector('#ON').onclick();
+    document.querySelector('#radioButtonMO').onclick;
+    document.querySelector('#ON').onclick;
     document.querySelector('.btn__select__weekends').classList.remove('inProgress');
     document.querySelector('.cal__div').style.backgroundImage = "url('./styles/images/cal__fon.jpg')";
     document.querySelectorAll('.days').forEach(function (x) { return x.onclick = function () {

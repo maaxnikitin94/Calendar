@@ -175,7 +175,7 @@
     align-self: center;
     border: none;
     width: 68%;
-    height: 120px;
+    height: 136px;
 }
 
 .label__input__div {
@@ -229,13 +229,20 @@
 }
 
 .cur__month_and_year {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    flex-direction: column;
     cursor: pointer;
     text-align: center;
     align-self: center;
     width: 150px;
-    height: 50px;
+    height: 50%;
     font-size: 33px;
-    padding-top: 10px;
+}
+.cur__month,.cur__year{
+    cursor: pointer;
 }
 
 .razmetka__4 {
@@ -249,7 +256,7 @@
     width: 110%;
     margin-left: -28px;
     margin-top: 10px;
-    margin-bottom: 5px;
+    margin-bottom: 7.5px;
     background: rgba(132, 146, 131, .9);
     box-shadow: inset 0 0 7px 3px black;
 }
@@ -316,7 +323,7 @@
     box-shadow: inset 0 0 2px 0 black;
     background: rgba(132, 146, 131, .8);
     width: 70px;
-    height: 23px;
+    height: 20px;
     margin-left: -25px;
     border: none;
     font-size: 12px;
