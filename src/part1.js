@@ -200,7 +200,7 @@ document.querySelector('.btn__accept').onclick = function (event) {
         }
     }
     document.querySelector('.date__input__div').style.display = 'none';
-    document.querySelector('.cur__month_and_year').style.display = 'unset';
+    document.querySelector('.cur__month_and_year').style.display = 'flex';
     clearCal();
     createCal(year, month);
     localStorage.getItem(mas_selectWeekends);
@@ -218,7 +218,7 @@ document.querySelector('.btn__accept').onclick = function (event) {
 //Обработка клика по Back
 document.querySelector('.btn__back').onclick = function () {
     document.querySelector('.date__input__div').style.display = 'none';
-    document.querySelector('.cur__month_and_year').style.display = 'unset';
+    document.querySelector('.cur__month_and_year').style.display = 'flex';
     document.querySelector('.input__input__div').value = '';
 };
 //Обработка клика по Settings
@@ -368,7 +368,7 @@ document.querySelector('.btn__cancel').onclick = function () {
     document.querySelector('#radioButtonMO').onclick;
     document.querySelector('#ON').onclick;
     document.querySelector('.btn__select__weekends').classList.remove('inProgress');
-    document.querySelector('.cal__div').style.backgroundImage = "url('./styles/images/cal__fon.jpg')";
+    document.querySelector('.cal__div').style.backgroundImage = "url('.as HTMLElement)/styles/images/cal__fon.jpg')";
     document.querySelectorAll('.days').forEach(function (x) { return x.onclick = function () {
     }; });
     document.querySelector('.btn__select__weekends').style.backgroundColor = '';
@@ -386,10 +386,10 @@ document.querySelector('.confirm__settings').onclick = function () {
     document.querySelectorAll('.days').forEach(function (x) { return x.onclick = function () {
     }; });
     if (document.querySelector('#radioButtonMO').checked === true) {
-        document.querySelector('#radioButtonMO').onclick();
+        document.querySelector('#radioButtonMO').onclick;
     }
     else if (document.querySelector('#radioButtonSU').checked === true) {
-        document.querySelector('#radioButtonSU').onclick();
+        document.querySelector('#radioButtonSU').onclick;
     }
     document.querySelector('.btn__select__weekends').style.background = 'white';
     document.querySelector('.btn__select__weekends').style.color = 'coral';
@@ -417,10 +417,10 @@ document.querySelector('.confirm__settings').onclick = function () {
     tapToDoList();
     markToDoDays();
     if (document.querySelector('#OFF').checked === true) {
-        document.querySelector('#OFF').onclick();
+        document.querySelector('#OFF').onclick;
     }
     else if (document.querySelector('#ON').checked === true) {
-        document.querySelector('#ON').onclick();
+        document.querySelector('#ON').onclick;
     }
 };
 //To Do List и всё,что с ним связано
@@ -505,8 +505,7 @@ var tapToDoList = function () {
             //Удаление
             document.querySelector('.to__do__delete').onclick = function () {
                 var myLastInput;
-                for (var _i = 0, _a = document.querySelector(".ul__" + dayX.innerText + "__" + month_mas[month - 1] + "__" + year).children; _i < _a.length; _i++) {
-                    var child = _a[_i];
+                for (var child in document.querySelector(".ul__" + dayX.innerText + "__" + month_mas[month - 1] + "__" + year).children) {
                     myLastInput = child;
                 }
                 if (myLastInput.classList.contains('to__do__li') && document.querySelectorAll(".li__day__" + dayX.innerText + "__" + month_mas[month - 1] + "__" + year).length > 0) {
@@ -526,7 +525,7 @@ tapToDoList();
 var markToDoDays = function () {
     for (var i = 0; i < localStorage.length; i++) {
         var myMasWithKeys = localStorage.getItem(localStorage.key(i)).split(',');
-        if (month == myMasWithKeys[1] && year == myMasWithKeys[2] && document.querySelector('#ON').checked === true && document.querySelector(".day__" + myMasWithKeys[0] + "__" + month_mas[month - 1] + "__" + year)) {
+        if (month == +myMasWithKeys[1] && year == +myMasWithKeys[2] && document.querySelector('#ON').checked === true && document.querySelector(".day__" + myMasWithKeys[0] + "__" + month_mas[month - 1] + "__" + year)) {
             document.querySelector(".main__day__" + myMasWithKeys[0]).style.boxShadow = 'inset 0 0 17px 4px black';
             document.querySelector(".main__day__" + myMasWithKeys[0]).style.color = 'white';
         }
@@ -548,7 +547,7 @@ var timer = null;
 document.querySelector('.weather__city__input').addEventListener('input', function (e) {
     clearTimeout(timer);
     timer = setTimeout(function () {
-        var x = e.target.value;
+        var x = (e.target).value;
         cur__city = x;
         url__weather = "https://api.openweathermap.org/data/2.5/forecast?q=" + cur__city + "&appid=df7de813ed047bccc7578b4b0cd34470&units=metric";
         document.querySelector('.weather__city__name').style.display = 'unset';

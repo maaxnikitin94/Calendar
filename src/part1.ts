@@ -219,7 +219,7 @@ let clearCal = () => {
         }
     }
     (document.querySelector('.date__input__div') as HTMLElement).style.display = 'none';
-    (document.querySelector('.cur__month_and_year') as HTMLElement).style.display = 'unset'
+    (document.querySelector('.cur__month_and_year') as HTMLElement).style.display = 'flex'
     clearCal()
     createCal(year, month)
     localStorage.getItem(mas_selectWeekends)
@@ -238,7 +238,7 @@ let clearCal = () => {
 //Обработка клика по Back
 (document.querySelector('.btn__back') as HTMLButtonElement).onclick = () => {
     (document.querySelector('.date__input__div') as HTMLElement).style.display = 'none';
-    (document.querySelector('.cur__month_and_year') as HTMLElement).style.display = 'unset';
+    (document.querySelector('.cur__month_and_year') as HTMLElement).style.display = 'flex';
     (document.querySelector('.input__input__div') as HTMLInputElement).value = ''
 }
 
@@ -303,7 +303,7 @@ let clearCal = () => {
     if (document.querySelector('.btn__select__weekends').classList.contains('inProgress')) {
         (document.querySelector('.btn__select__weekends') as HTMLElement).onclick
     }
-    (document.querySelector('#radio__cur__month')as HTMLElement).onclick
+    (document.querySelector('#radio__cur__month') as HTMLElement).onclick
     tapToDoList()
     markToDoDays()
 }
@@ -342,7 +342,7 @@ let clearCal = () => {
 
 //Обработка клика по To Do radio
 //ON
-(document.querySelector('#ON')as HTMLElement).onclick = () => {
+(document.querySelector('#ON') as HTMLElement).onclick = () => {
     if ((document.querySelector('#OFF') as HTMLInputElement).checked === true) {
         (document.querySelector('#OFF') as HTMLInputElement).checked = false;
         (document.querySelector('#ON') as HTMLInputElement).checked = true
@@ -352,12 +352,12 @@ let clearCal = () => {
 }
 
 //OFF
-(document.querySelector('#OFF')as HTMLElement).onclick = () => {
-    if ((document.querySelector('#ON')as HTMLInputElement).checked === true) {
-        (document.querySelector('#ON')as HTMLInputElement).checked = false;
-        (document.querySelector('#OFF')as HTMLInputElement).checked = true
+(document.querySelector('#OFF') as HTMLElement).onclick = () => {
+    if ((document.querySelector('#ON') as HTMLInputElement).checked === true) {
+        (document.querySelector('#ON') as HTMLInputElement).checked = false;
+        (document.querySelector('#OFF') as HTMLInputElement).checked = true
     }
-    document.querySelectorAll(`.main__day`).forEach((x:HTMLElement) => {
+    document.querySelectorAll(`.main__day`).forEach((x: HTMLElement) => {
         x.style.boxShadow = ''
         x.style.color = 'black'
         x.onclick = () => {
@@ -369,98 +369,98 @@ let clearCal = () => {
 
 //Обработка checked Only current month
 (document.querySelector('#radio__cur__month') as HTMLElement).onclick = () => {
-    if ((document.querySelector('#radio__cur__month')as HTMLInputElement).checked === true) {
-        document.querySelectorAll('.clear__day').forEach((x:HTMLElement) => x.style.opacity = '0')
-        document.querySelectorAll('.clear__day2').forEach((x:HTMLElement) => x.style.opacity = '0')
+    if ((document.querySelector('#radio__cur__month') as HTMLInputElement).checked === true) {
+        document.querySelectorAll('.clear__day').forEach((x: HTMLElement) => x.style.opacity = '0')
+        document.querySelectorAll('.clear__day2').forEach((x: HTMLElement) => x.style.opacity = '0')
     }
-    if ((document.querySelector('#radio__cur__month')as HTMLInputElement).checked === false) {
-        document.querySelectorAll('.clear__day').forEach((x:HTMLElement) => x.style.opacity = '')
-        document.querySelectorAll('.clear__day2').forEach((x:HTMLElement) => x.style.opacity = '')
+    if ((document.querySelector('#radio__cur__month') as HTMLInputElement).checked === false) {
+        document.querySelectorAll('.clear__day').forEach((x: HTMLElement) => x.style.opacity = '')
+        document.querySelectorAll('.clear__day2').forEach((x: HTMLElement) => x.style.opacity = '')
     }
 }
 
 
 //Обработка клика по Back from Settings
-(document.querySelector('.btn__back__from__settings')as HTMLElement).onclick = () => {
-    (document.querySelector('.btn__settings')as HTMLElement).style.display = 'unset';
-    (document.querySelector('.settings__div')as HTMLElement).style.display = 'none';
+(document.querySelector('.btn__back__from__settings') as HTMLElement).onclick = () => {
+    (document.querySelector('.btn__settings') as HTMLElement).style.display = 'unset';
+    (document.querySelector('.settings__div') as HTMLElement).style.display = 'none';
 }
 
 //Обработка Cancel
-(document.querySelector('.btn__cancel')as HTMLElement).onclick = () => {
-    document.querySelectorAll('.select__weekend').forEach((x:HTMLElement) => {
+(document.querySelector('.btn__cancel') as HTMLElement).onclick = () => {
+    document.querySelectorAll('.select__weekend').forEach((x: HTMLElement) => {
         x.style.background = ''
         x.classList.remove('select__weekend')
     });
     (document.querySelector('#radio__cur__month') as HTMLInputElement).checked = false;
-    document.querySelectorAll('.clear__day').forEach((x:HTMLElement) => x.style.opacity = '')
-    document.querySelectorAll('.clear__day2').forEach((x:HTMLElement) => x.style.opacity = '')
+    document.querySelectorAll('.clear__day').forEach((x: HTMLElement) => x.style.opacity = '')
+    document.querySelectorAll('.clear__day2').forEach((x: HTMLElement) => x.style.opacity = '')
     mas_selectWeekends = []
     localStorage.removeItem('mas_selectWeekends');
-    (document.querySelector('#radioButtonMO')as HTMLElement).onclick;
-    (document.querySelector('#ON')as HTMLElement).onclick
+    (document.querySelector('#radioButtonMO') as HTMLElement).onclick;
+    (document.querySelector('#ON') as HTMLElement).onclick
     document.querySelector('.btn__select__weekends').classList.remove('inProgress');
-    (document.querySelector('.cal__div')as HTMLElement).style.backgroundImage = "url('./styles/images/cal__fon.jpg')"
-    document.querySelectorAll('.days').forEach((x:HTMLElement) => x.onclick = () => {
+    (document.querySelector('.cal__div') as HTMLElement).style.backgroundImage = "url('.as HTMLElement)/styles/images/cal__fon.jpg')"
+    document.querySelectorAll('.days').forEach((x: HTMLElement) => x.onclick = () => {
 
     });
-    (document.querySelector('.btn__select__weekends')as HTMLElement).style.backgroundColor = '';
-    (document.querySelector('.btn__select__weekends')as HTMLElement).style.color = '';
-    (document.querySelector('.btn__select__weekends')as HTMLElement).style.boxShadow = '';
-    (document.querySelector('.btn__settings')as HTMLElement).style.display = 'unset';
-    (document.querySelector('.settings__div')as HTMLElement).style.display = 'none';
+    (document.querySelector('.btn__select__weekends') as HTMLElement).style.backgroundColor = '';
+    (document.querySelector('.btn__select__weekends') as HTMLElement).style.color = '';
+    (document.querySelector('.btn__select__weekends') as HTMLElement).style.boxShadow = '';
+    (document.querySelector('.btn__settings') as HTMLElement).style.display = 'unset';
+    (document.querySelector('.settings__div') as HTMLElement).style.display = 'none';
     tapToDoList()
     markToDoDays()
 }
 
 //Обработка клика по Confirm
-document.querySelector('.confirm__settings').onclick = () => {
-    document.querySelector('.cal__div').style.backgroundImage = "url('./styles/images/cal__fon.jpg')"
+(document.querySelector('.confirm__settings') as HTMLElement).onclick = () => {
+    (document.querySelector('.cal__div') as HTMLElement).style.backgroundImage = "url('./styles/images/cal__fon.jpg')"
     localStorage.setItem('mas_selectWeekends', mas_selectWeekends)
-    document.querySelectorAll('.days').forEach(x => x.onclick = () => {
+    document.querySelectorAll('.days').forEach((x: HTMLElement) => x.onclick = () => {
 
     })
-    if (document.querySelector('#radioButtonMO').checked === true) {
-        document.querySelector('#radioButtonMO').onclick()
-    } else if (document.querySelector('#radioButtonSU').checked === true) {
-        document.querySelector('#radioButtonSU').onclick()
+    if ((document.querySelector('#radioButtonMO') as HTMLInputElement).checked === true) {
+        (document.querySelector('#radioButtonMO') as HTMLElement).onclick
+    } else if ((document.querySelector('#radioButtonSU') as HTMLInputElement).checked === true) {
+        (document.querySelector('#radioButtonSU') as HTMLElement).onclick
     }
-    document.querySelector('.btn__select__weekends').style.background = 'white'
-    document.querySelector('.btn__select__weekends').style.color = 'coral'
-    document.querySelector('.btn__select__weekends').style.boxShadow = '0 0 3px 3px coral'
+    (document.querySelector('.btn__select__weekends') as HTMLElement).style.background = 'white';
+    (document.querySelector('.btn__select__weekends') as HTMLElement).style.color = 'coral';
+    (document.querySelector('.btn__select__weekends') as HTMLElement).style.boxShadow = '0 0 3px 3px coral'
     document.querySelectorAll('.days').forEach(x => {
         if (x.classList.contains('select__weekend')) {
-            document.querySelector('.btn__select__weekends').style.background = 'white'
-            document.querySelector('.btn__select__weekends').style.color = 'coral'
-            document.querySelector('.btn__select__weekends').style.boxShadow = '0 0 3px 3px coral'
-            document.querySelector('.btn__settings').style.display = 'unset';
-            document.querySelector('.settings__div').style.display = 'none';
+            (document.querySelector('.btn__select__weekends') as HTMLElement).style.background = 'white';
+            (document.querySelector('.btn__select__weekends') as HTMLElement).style.color = 'coral';
+            (document.querySelector('.btn__select__weekends') as HTMLElement).style.boxShadow = '0 0 3px 3px coral';
+            (document.querySelector('.btn__settings') as HTMLElement).style.display = 'unset';
+            (document.querySelector('.settings__div') as HTMLElement).style.display = 'none';
         } else if (!x.classList.contains('select__weekend')) {
-            document.querySelector('.btn__select__weekends').style.backgroundColor = ''
-            document.querySelector('.btn__select__weekends').style.color = ''
-            document.querySelector('.btn__select__weekends').style.boxShadow = ''
-            document.querySelectorAll('.days').forEach(x => x.onclick = () => {
+            (document.querySelector('.btn__select__weekends') as HTMLElement).style.backgroundColor = '';
+            (document.querySelector('.btn__select__weekends') as HTMLElement).style.color = '';
+            (document.querySelector('.btn__select__weekends') as HTMLElement).style.boxShadow = ''
+            document.querySelectorAll('.days').forEach((x: HTMLElement) => x.onclick = () => {
 
-            })
-            document.querySelector('.cal__div').style.backgroundImage = "url('./styles/images/cal__fon.jpg')"
-            document.querySelector('.btn__settings').style.display = 'unset';
-            document.querySelector('.settings__div').style.display = 'none';
+            });
+            (document.querySelector('.cal__div') as HTMLElement).style.backgroundImage = "url('./styles/images/cal__fon.jpg')";
+            (document.querySelector('.btn__settings') as HTMLElement).style.display = 'unset';
+            (document.querySelector('.settings__div') as HTMLElement).style.display = 'none';
         }
     })
     document.querySelector('.btn__select__weekends').classList.remove('inProgress')
     tapToDoList()
     markToDoDays()
-    if (document.querySelector('#OFF').checked === true) {
-        document.querySelector('#OFF').onclick()
-    } else if (document.querySelector('#ON').checked === true) {
-        document.querySelector('#ON').onclick()
+    if ((document.querySelector('#OFF') as HTMLInputElement).checked === true) {
+        (document.querySelector('#OFF') as HTMLElement).onclick
+    } else if ((document.querySelector('#ON') as HTMLInputElement).checked === true) {
+        (document.querySelector('#ON') as HTMLElement).onclick
     }
 }
 
 //To Do List и всё,что с ним связано
 //Создание листа при нажатии дня
 let tapToDoList = () => {
-    document.querySelectorAll('.main__day').forEach(dayX => {
+    document.querySelectorAll('.main__day').forEach((dayX: HTMLElement) => {
         dayX.onclick = () => {
             if (document.querySelector(`.day__${dayX.innerText}__${month_mas[month - 1]}__${year}`)) {
                 document.querySelector(`.day__${dayX.innerText}__${month_mas[month - 1]}__${year}`).classList.toggle('hide__element')
@@ -475,40 +475,40 @@ let tapToDoList = () => {
 
             //Отключить лишние нажатия,пока открыт To Do List
             if (document.querySelector('.to__do__list__div')) {
-                document.querySelector('.arrows').style.pointerEvents = 'none';
-                document.querySelector('.cur__date').style.pointerEvents = 'none';
-                document.querySelectorAll('.days').forEach(x => x.style.pointerEvents = 'none')
-                document.querySelector('.settings__div').style.display = 'none'
+                (document.querySelector('.arrows') as HTMLElement).style.pointerEvents = 'none';
+                (document.querySelector('.cur__date') as HTMLElement).style.pointerEvents = 'none';
+                document.querySelectorAll('.days').forEach((x: HTMLElement) => x.style.pointerEvents = 'none');
+                (document.querySelector('.settings__div') as HTMLElement).style.display = 'none'
             }
 
 
             //Back from To Do List
-            document.querySelector('.to__do__back').onclick = () => {
+            (document.querySelector('.to__do__back') as HTMLElement).onclick = () => {
                 if (document.querySelector(`.day__${dayX.innerText}__${month_mas[month - 1]}__${year}`).classList.contains('withInfo')) {
                     document.querySelector(`.day__${dayX.innerText}__${month_mas[month - 1]}__${year}`).classList.add('hide__element')
                 } else {
                     document.querySelector(`.day__${dayX.innerText}__${month_mas[month - 1]}__${year}`).remove()
-                    localStorage.removeItem(`td__${dayX.innerText}__${month_mas[month - 1]}__${year}`)
-                    document.querySelector(`.main__day__${dayX.innerText}`).style.boxShadow = ''
-                    document.querySelector(`.main__day__${dayX.innerText}`).style.color = ''
+                    localStorage.removeItem(`td__${dayX.innerText}__${month_mas[month - 1]}__${year}`);
+                    (document.querySelector(`.main__day__${dayX.innerText}`) as HTMLElement).style.boxShadow = '';
+                    (document.querySelector(`.main__day__${dayX.innerText}`) as HTMLElement).style.color = ''
                     if (document.querySelector(`.main__day__${dayX.innerText}`).classList.contains('select__weekend')) {
-                        document.querySelector(`.main__day__${dayX.innerText}`).style.boxShadow = '0 0 6px 6px rgba(132, 146, 131, .9)'
-                        document.querySelector(`.main__day__${dayX.innerText}`).style.color = 'white'
+                        (document.querySelector(`.main__day__${dayX.innerText}`) as HTMLElement).style.boxShadow = '0 0 6px 6px rgba(132, 146, 131, .9)';
+                        (document.querySelector(`.main__day__${dayX.innerText}`) as HTMLElement).style.color = 'white'
                     }
                 }
-                document.querySelector('.arrows').style.pointerEvents = '';
-                document.querySelector('.cur__date').style.pointerEvents = '';
-                document.querySelectorAll('.days').forEach(x => x.style.pointerEvents = '')
-                document.querySelector('.btn__settings').style.display = 'unset'
+                (document.querySelector('.arrows') as HTMLElement).style.pointerEvents = '';
+                (document.querySelector('.cur__date') as HTMLElement).style.pointerEvents = '';
+                document.querySelectorAll('.days').forEach((x: HTMLElement) => x.style.pointerEvents = '');
+                (document.querySelector('.btn__settings') as HTMLElement).style.display = 'unset'
                 markToDoDays()
             }
 
             //Добавление,удаление строк To Do List
             //Добавление
-            document.querySelector('.to__do__add').onclick = () => {
+            (document.querySelector('.to__do__add') as HTMLElement).onclick = () => {
                 if (document.querySelectorAll(`.li__day__${dayX.innerText}__${month_mas[month - 1]}__${year}`).length === 0) {
-                    document.querySelector(`.day__${dayX.innerText}__${month_mas[month - 1]}__${year}`).classList.add('withInfo')
-                    document.querySelector(`.btn__delete__${dayX.innerText}__${month_mas[month - 1]}__${year}`).style.display = ''
+                    document.querySelector(`.day__${dayX.innerText}__${month_mas[month - 1]}__${year}`).classList.add('withInfo');
+                    (document.querySelector(`.btn__delete__${dayX.innerText}__${month_mas[month - 1]}__${year}`) as HTMLElement).style.display = ''
                     localStorage.setItem(`td__day__${dayX.innerText}__${month_mas[month - 1]}__${year}`, `${dayX.innerText},${month},${year}`)
                 }
                 if (document.querySelectorAll(`.li__day__${dayX.innerText}__${month_mas[month - 1]}__${year}`).length > 9) {
@@ -522,33 +522,33 @@ let tapToDoList = () => {
 
                     //ДОРАБОТАТЬ,ЧТОБЫ КАЖДЫЙ radiobutton БЫЛ КАК ОТДЕЛЬНОЕ ЦЕЛОЕ(ОТМЕТКА ВЫПОЛНЕНО ИЛИ НЕТ ЗАДАНИЕ ДНЯ)
                     document.querySelector(`.task__radio1__day__${dayX.innerText}__${month_mas[month - 1]}__${year}`).addEventListener('click', function () {
-                        document.querySelector(`.task__day__${dayX.innerText}__${month_mas[month - 1]}__${year}`).style.textDecoration = 'line-through'
-                        document.querySelector(`.task__radio1__day__${dayX.innerText}__${month_mas[month - 1]}__${year}`).style.background = 'black'
-                        document.querySelector(`.task__radio1__day__${dayX.innerText}__${month_mas[month - 1]}__${year}`).style.boxShadow = '0 0 2px 2px floralwhite'
-                        document.querySelector(`.task__radio1__day__${dayX.innerText}__${month_mas[month - 1]}__${year}`).style.color = 'floralwhite'
+                        (document.querySelector(`.task__day__${dayX.innerText}__${month_mas[month - 1]}__${year}`) as HTMLElement).style.textDecoration = 'line-through';
+                        (document.querySelector(`.task__radio1__day__${dayX.innerText}__${month_mas[month - 1]}__${year}`) as HTMLElement).style.background = 'black';
+                        (document.querySelector(`.task__radio1__day__${dayX.innerText}__${month_mas[month - 1]}__${year}`) as HTMLElement).style.boxShadow = '0 0 2px 2px floralwhite';
+                        (document.querySelector(`.task__radio1__day__${dayX.innerText}__${month_mas[month - 1]}__${year}`) as HTMLElement).style.color = 'floralwhite'
 
-                        document.querySelector(`.task__radio2__day__${dayX.innerText}__${month_mas[month - 1]}__${year}`).classList.remove('to__do__input__cansel')
-                        document.querySelector(`.task__radio2__day__${dayX.innerText}__${month_mas[month - 1]}__${year}`).style.background = ''
-                        document.querySelector(`.task__radio2__day__${dayX.innerText}__${month_mas[month - 1]}__${year}`).style.boxShadow = ''
-                        document.querySelector(`.task__radio2__day__${dayX.innerText}__${month_mas[month - 1]}__${year}`).style.color = ''
+                        document.querySelector(`.task__radio2__day__${dayX.innerText}__${month_mas[month - 1]}__${year}`).classList.remove('to__do__input__cansel');
+                        (document.querySelector(`.task__radio2__day__${dayX.innerText}__${month_mas[month - 1]}__${year}`) as HTMLElement).style.background = '';
+                        (document.querySelector(`.task__radio2__day__${dayX.innerText}__${month_mas[month - 1]}__${year}`) as HTMLElement).style.boxShadow = '';
+                        (document.querySelector(`.task__radio2__day__${dayX.innerText}__${month_mas[month - 1]}__${year}`) as HTMLElement).style.color = ''
                     })
                     document.querySelector(`.task__radio2__day__${dayX.innerText}__${month_mas[month - 1]}__${year}`).addEventListener('click', function () {
-                        document.querySelector(`.task__day__${dayX.innerText}__${month_mas[month - 1]}__${year}`).style.textDecoration = 'none'
-                        document.querySelector(`.task__radio2__day__${dayX.innerText}__${month_mas[month - 1]}__${year}`).style.background = 'black'
-                        document.querySelector(`.task__radio2__day__${dayX.innerText}__${month_mas[month - 1]}__${year}`).style.boxShadow = '0 0 2px 2px floralwhite'
-                        document.querySelector(`.task__radio2__day__${dayX.innerText}__${month_mas[month - 1]}__${year}`).style.color = 'floralwhite'
+                        (document.querySelector(`.task__day__${dayX.innerText}__${month_mas[month - 1]}__${year}`) as HTMLElement).style.textDecoration = 'none';
+                        (document.querySelector(`.task__radio2__day__${dayX.innerText}__${month_mas[month - 1]}__${year}`) as HTMLElement).style.background = 'black';
+                        (document.querySelector(`.task__radio2__day__${dayX.innerText}__${month_mas[month - 1]}__${year}`) as HTMLElement).style.boxShadow = '0 0 2px 2px floralwhite';
+                        (document.querySelector(`.task__radio2__day__${dayX.innerText}__${month_mas[month - 1]}__${year}`) as HTMLElement).style.color = 'floralwhite';
 
-                        document.querySelector(`.task__radio1__day__${dayX.innerText}__${month_mas[month - 1]}__${year}`).style.background = ''
-                        document.querySelector(`.task__radio1__day__${dayX.innerText}__${month_mas[month - 1]}__${year}`).style.boxShadow = ''
-                        document.querySelector(`.task__radio1__day__${dayX.innerText}__${month_mas[month - 1]}__${year}`).style.color = ''
+                        (document.querySelector(`.task__radio1__day__${dayX.innerText}__${month_mas[month - 1]}__${year}`) as HTMLElement).style.background = '';
+                        (document.querySelector(`.task__radio1__day__${dayX.innerText}__${month_mas[month - 1]}__${year}`) as HTMLElement).style.boxShadow = '';
+                        (document.querySelector(`.task__radio1__day__${dayX.innerText}__${month_mas[month - 1]}__${year}`) as HTMLElement).style.color = ''
                     })
                 }
             }
 
             //Удаление
-            document.querySelector('.to__do__delete').onclick = () => {
+            (document.querySelector('.to__do__delete') as HTMLElement).onclick = () => {
                 let myLastInput;
-                for (let child of document.querySelector(`.ul__${dayX.innerText}__${month_mas[month - 1]}__${year}`).children) {
+                for (let child in document.querySelector(`.ul__${dayX.innerText}__${month_mas[month - 1]}__${year}`).children) {
                     myLastInput = child;
                 }
                 if (myLastInput.classList.contains('to__do__li') && document.querySelectorAll(`.li__day__${dayX.innerText}__${month_mas[month - 1]}__${year}`).length > 0) {
@@ -556,8 +556,8 @@ let tapToDoList = () => {
                 }
                 if (document.querySelectorAll(`.li__day__${dayX.innerText}__${month_mas[month - 1]}__${year}`).length === 0) {
                     document.querySelector(`.day__${dayX.innerText}__${month_mas[month - 1]}__${year}`).classList.remove('withInfo')
-                    localStorage.removeItem(`td__day__${dayX.innerText}__${month_mas[month - 1]}__${year}`)
-                    document.querySelector(`.btn__delete__${dayX.innerText}__${month_mas[month - 1]}__${year}`).style.display = 'none'
+                    localStorage.removeItem(`td__day__${dayX.innerText}__${month_mas[month - 1]}__${year}`);
+                    (document.querySelector(`.btn__delete__${dayX.innerText}__${month_mas[month - 1]}__${year}`) as HTMLElement).style.display = 'none'
                 }
             }
         }
@@ -569,11 +569,11 @@ tapToDoList()
 let markToDoDays = () => {
     for (let i = 0; i < localStorage.length; i++) {
         let myMasWithKeys = localStorage.getItem(localStorage.key(i)).split(',')
-        if (month == myMasWithKeys[1] && year == myMasWithKeys[2] && document.querySelector('#ON').checked === true && document.querySelector(`.day__${myMasWithKeys[0]}__${month_mas[month - 1]}__${year}`)) {
-            document.querySelector(`.main__day__${myMasWithKeys[0]}`).style.boxShadow = 'inset 0 0 17px 4px black'
-            document.querySelector(`.main__day__${myMasWithKeys[0]}`).style.color = 'white'
+        if (month == +myMasWithKeys[1] && year == +myMasWithKeys[2] && (document.querySelector('#ON') as HTMLInputElement).checked === true && document.querySelector(`.day__${myMasWithKeys[0]}__${month_mas[month - 1]}__${year}`)) {
+            (document.querySelector(`.main__day__${myMasWithKeys[0]}`) as HTMLElement).style.boxShadow = 'inset 0 0 17px 4px black';
+            (document.querySelector(`.main__day__${myMasWithKeys[0]}`) as HTMLElement).style.color = 'white'
 
-        } else if (document.querySelector('#ON').checked === false) {
+        } else if ((document.querySelector('#ON') as HTMLInputElement).checked === false) {
             return;
         }
     }
@@ -581,12 +581,12 @@ let markToDoDays = () => {
 
 //Работа с погодой
 let cur__city = 'Mogilev'
-let url__weather = `https://api.openweathermap.org/data/2.5/forecast?q=${cur__city}&appid=df7de813ed047bccc7578b4b0cd34470&units=metric`
+let url__weather = `https://api.openweathermap.org/data/2.5/forecast?q=${cur__city}&appid=df7de813ed047bccc7578b4b0cd34470&units=metric`;
 
 //При нажатии на город показывает инпут куда вводим город
-document.querySelector('.weather__city__name').onclick = () => {
-    document.querySelector('.weather__city__name').style.display = 'none'
-    document.querySelector('.weather__city__input').style.display = 'unset'
+(document.querySelector('.weather__city__name') as HTMLElement).onclick = () => {
+    (document.querySelector('.weather__city__name') as HTMLElement).style.display = 'none';
+    (document.querySelector('.weather__city__input') as HTMLElement).style.display = 'unset'
 }
 
 //Таймер на ввод названия города
@@ -594,14 +594,14 @@ let timer = null
 document.querySelector('.weather__city__input').addEventListener('input', function (e) {
     clearTimeout(timer)
     timer = setTimeout(function () {
-        let x = e.target.value
+        let x = ((e.target) as HTMLTextAreaElement).value
         cur__city = x;
-        url__weather = `https://api.openweathermap.org/data/2.5/forecast?q=${cur__city}&appid=df7de813ed047bccc7578b4b0cd34470&units=metric`
-        document.querySelector('.weather__city__name').style.display = 'unset'
-        document.querySelector('.weather__city__input').style.display = 'none'
+        url__weather = `https://api.openweathermap.org/data/2.5/forecast?q=${cur__city}&appid=df7de813ed047bccc7578b4b0cd34470&units=metric`;
+        (document.querySelector('.weather__city__name') as HTMLElement).style.display = 'unset';
+        (document.querySelector('.weather__city__input') as HTMLElement).style.display = 'none'
         //Если ввели то,на что не делает запрос,то очищает input и оставляет предыдущие параметры
         if (url__weather) {
-            document.querySelector('.weather__city__input').value = ''
+            (document.querySelector('.weather__city__input') as HTMLInputElement).value = ''
         }
         //Запрос fetch после изменения города
         fetch(url__weather)
@@ -627,13 +627,13 @@ document.querySelector('.weather__city__input').addEventListener('input', functi
                         averageTemp4 += Math.round(json.list[jsonKey].main.temp) / 8
                     }
                 }
-                document.querySelector('.temp__today').innerText = `${Math.round(json.list[0].main.temp)} C`
-                document.querySelector('.weather__img').src = `http://openweathermap.org/img/w/${json.list[0].weather[0].icon}.png`
-                document.querySelector('.weather__city__name').innerText = `${cur__city}`
-                document.querySelector('.t1').innerText = `${+day + 1}th:${Math.round(averageTemp1 - 1)}..${Math.round(averageTemp1 + 1)}C`
-                document.querySelector('.t2').innerText = `${+day + 2}th:${Math.round(averageTemp2 - 1)}..${Math.round(averageTemp2 + 1)}C`
-                document.querySelector('.t3').innerText = `${+day + 3}th:${Math.round(averageTemp3 - 1)}..${Math.round(averageTemp3 + 1)}C`
-                document.querySelector('.t4').innerText = `${+day + 4}th:${Math.round(averageTemp4 - 1)}..${Math.round(averageTemp4 + 1)}C`
+                (document.querySelector('.temp__today') as HTMLElement).innerText = `${Math.round(json.list[0].main.temp)} C`;
+                (document.querySelector('.weather__img') as HTMLImageElement).src = `http://openweathermap.org/img/w/${json.list[0].weather[0].icon}.png`;
+                (document.querySelector('.weather__city__name') as HTMLElement).innerText = `${cur__city}`;
+                (document.querySelector('.t1') as HTMLElement).innerText = `${+day + 1}th:${Math.round(averageTemp1 - 1)}..${Math.round(averageTemp1 + 1)}C`;
+                (document.querySelector('.t2') as HTMLElement).innerText = `${+day + 2}th:${Math.round(averageTemp2 - 1)}..${Math.round(averageTemp2 + 1)}C`;
+                (document.querySelector('.t3') as HTMLElement).innerText = `${+day + 3}th:${Math.round(averageTemp3 - 1)}..${Math.round(averageTemp3 + 1)}C`;
+                (document.querySelector('.t4') as HTMLElement).innerText = `${+day + 4}th:${Math.round(averageTemp4 - 1)}..${Math.round(averageTemp4 + 1)}C`
             })
     }, 1200)
 })
@@ -662,11 +662,12 @@ fetch(url__weather)
                 averageTemp4 += Math.round(json.list[jsonKey].main.temp) / 8
             }
         }
-        document.querySelector('.temp__today').innerText = `${Math.round(json.list[0].main.temp)} C`
-        document.querySelector('.weather__img').src = `http://openweathermap.org/img/w/${json.list[0].weather[0].icon}.png`
-        document.querySelector('.weather__city__name').innerText = `${cur__city}`
-        document.querySelector('.t1').innerText = `${+day + 1}th:${Math.round(averageTemp1 - 1)}..${Math.round(averageTemp1 + 1)}C`
-        document.querySelector('.t2').innerText = `${+day + 2}th:${Math.round(averageTemp2 - 1)}..${Math.round(averageTemp2 + 1)}C`
-        document.querySelector('.t3').innerText = `${+day + 3}th:${Math.round(averageTemp3 - 1)}..${Math.round(averageTemp3 + 1)}C`
-        document.querySelector('.t4').innerText = `${+day + 4}th:${Math.round(averageTemp4 - 1)}..${Math.round(averageTemp4 + 1)}C`
+        (document.querySelector('.temp__today') as HTMLElement).innerText = `${Math.round(json.list[0].main.temp)} C`;
+        (document.querySelector('.weather__img') as HTMLImageElement).src = `http://openweathermap.org/img/w/${json.list[0].weather[0].icon}.png`;
+        (document.querySelector('.weather__city__name') as HTMLElement).innerText = `${cur__city}`;
+        (document.querySelector('.t1') as HTMLElement).innerText = `${+day + 1}th:${Math.round(averageTemp1 - 1)}..${Math.round(averageTemp1 + 1)}C`;
+        (document.querySelector('.t2') as HTMLElement).innerText = `${+day + 2}th:${Math.round(averageTemp2 - 1)}..${Math.round(averageTemp2 + 1)}C`;
+        (document.querySelector('.t3') as HTMLElement).innerText = `${+day + 3}th:${Math.round(averageTemp3 - 1)}..${Math.round(averageTemp3 + 1)}C`;
+        (document.querySelector('.t4') as HTMLElement).innerText = `${+day + 4}th:${Math.round(averageTemp4 - 1)}..${Math.round(averageTemp4 + 1)}C`
+
     })
