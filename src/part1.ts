@@ -1,1 +1,1 @@
-console.log(days_of_month)
+console.log(cur_month)
