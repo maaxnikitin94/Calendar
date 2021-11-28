@@ -57,7 +57,7 @@ document.querySelector('.cur__date').addEventListener('click', () => {
     document.querySelector('#radio__cur__month').addEventListener('click', () => {
     });
 });
-//Получаем номер дня недели, делаем воскресенье 7-ым вместо 0-вого.
+// //Получаем номер дня недели, делаем воскресенье 7-ым вместо 0-вого.
 let getDay = (date) => {
     let day = date.getDay();
     if (day === 0) {
@@ -484,7 +484,7 @@ let tapToDoList = () => {
                     document.querySelector(`.ul__${dayX.innerText}__${month_mas[month - 1]}__${year}`).insertAdjacentHTML('beforeend', `<li class="to__do__li li__day__${dayX.innerText}__${month_mas[month - 1]}__${year}">
                         <button class="to__do__input__radio task__radio1__day__${dayX.innerText}__${month_mas[month - 1]}__${year}">&#10004</button>
                         <button class="to__do__input__radio task__radio2__day__${dayX.innerText}__${month_mas[month - 1]}__${year} to__do__input__cansel">&#10006</button>
-                        <input type="text" class="to__do__input task__day__${dayX.innerText}__${month_mas[month - 1]}__${year}"> 
+                        <input type="text" class="to__do__input task__day__${dayX.innerText}__${month_mas[month - 1]}__${year}">
                     </li>`);
                     //ДОРАБОТАТЬ,ЧТОБЫ КАЖДЫЙ radiobutton БЫЛ КАК ОТДЕЛЬНОЕ ЦЕЛОЕ(ОТМЕТКА ВЫПОЛНЕНО ИЛИ НЕТ ЗАДАНИЕ ДНЯ)
                     document.querySelector(`.task__radio1__day__${dayX.innerText}__${month_mas[month - 1]}__${year}`).addEventListener('click', function () {
@@ -626,4 +626,3 @@ fetch(url__weather)
     document.querySelector('.t3').innerText = `${+day + 3}th:${Math.round(averageTemp3 - 1)}..${Math.round(averageTemp3 + 1)}C`;
     document.querySelector('.t4').innerText = `${+day + 4}th:${Math.round(averageTemp4 - 1)}..${Math.round(averageTemp4 + 1)}C`;
 });
-console.log(cur_month);
